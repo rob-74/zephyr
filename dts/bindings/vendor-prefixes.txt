@@ -50,6 +50,7 @@ ampire	Ampire Co., Ltd.
 ams	AMS AG
 amstaos	AMS-Taos Inc.
 analogix	Analogix Semiconductor, Inc.
+anamicro	analog microelectronics GmbH
 andestech	Andes Technology Corporation
 anvo	Anvo-Systems Dresden GmbH
 aosong	Guangzhou Aosong Electronic Co., Ltd.

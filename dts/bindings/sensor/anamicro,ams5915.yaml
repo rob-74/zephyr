@@ -1,0 +1,41 @@
+# SPDX-License-Identifier: Apache-2.0
+
+description: AMS5915 pressure and temperature sensor
+
+compatible: "anamicro,ams5915"
+
+include: [sensor-device.yaml, i2c-device.yaml]
+
+properties:
+  variant:
+    type: int
+    required: true
+    description: |
+      AMS 5915 Sensor Variant
+    enum:
+      - 0 # AMS5915_0005_D_N
+      - 1 # AMS5915_0010_D_N
+      - 2 # AMS5915_0002_D_B_N
+      - 3 # AMS5915_0005_D_B_N
+      - 4 # AMS5915_0010_D_B_N
+      - 5 # AMS5915_0020_D_N
+      - 6 # AMS5915_0050_D_N
+      - 7 # AMS5915_0100_D_N
+      - 8 # AMS5915_0020_D_B_N
+      - 9 # AMS5915_0050_D_B_N
+      - 10 # AMS5915_0100_D_B_N
+      - 11 # AMS5915_0200_D_N
+      - 12 # AMS5915_0350_D_N
+      - 13 # AMS5915_1000_D_N
+      - 14 # AMS5915_2000_D_N
+      - 15 # AMS5915_4000_D_N
+      - 16 # AMS5915_7000_D_N
+      - 17 # AMS5915_1000_D_N
+      - 18 # AMS5915_0200_D_B_N
+      - 19 # AMS5915_0350_D_B_N
+      - 20 # AMS5915_1000_D_B_N
+      - 21 # AMS5915_4000_D_I_N
+      - 22 # AMS5915_7000_D_I_N
+      - 23 # AMS5915_10000_D_I_N
+      - 24 # AMS5915_12000_D_I_N
+      - 25 # AMS5915_16000_D_I_N

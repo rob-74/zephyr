@@ -1,0 +1,101 @@
+# AMS5915 pressure and temperature sensor configuration options
+
+# SPDX-License-Identifier: Apache-2.0
+
+menuconfig AMS5915
+	bool "AMS 5915 is a series of high precision, digital pressure sensors"
+	default y
+	depends on DT_HAS_ANAMICRO_AMS5915_ENABLED
+	select I2C
+	help
+	  Enable driver for AMS5915 I2C-based pressure and temperature sensor.
+
+# if AMS5915
+
+# choice
+# 	prompt "AMS5915 sensor variant"
+# 	default AMS5915_VARIANT_0005_D_N
+# 	help
+# 	  Select sensor variant. Please check the data sheet for further details.
+
+# config AMS5915_VARIANT_0005_D_N	
+# 	bool "AMS5915-0005-D-N"
+
+# config AMS5915_VARIANT_0010_D_N	
+# 	bool "AMS5915-0010-D-B-N"
+
+# config AMS5915_VARIANT_0002_D_B_N	
+# 	bool "AMS5915-0003-D-B-N"
+
+# config AMS5915_VARIANT_0005_D_B_N	
+# 	bool "AMS5915-0005-D-B-N"
+
+# config AMS5915_VARIANT_0010_D_B_N	
+# 	bool "AMS5915-0010-D-B-N"
+
+# config AMS5915_VARIANT_0020_D_N	
+# 	bool "AMS5915-0020-D-N"
+
+# config AMS5915_VARIANT_0050_D_N	
+# 	bool "AMS5915-0050-D-N"
+
+# config AMS5915_VARIANT_0100_D_N	
+# 	bool "AMS5915-0100-D-N"
+
+# config AMS5915_VARIANT_0020_D_B_N	
+# 	bool "AMS5915-0020-D-B-N"
+
+# config AMS5915_VARIANT_0050_D_B_N	
+# 	bool "AMS5915-0050-D-B-N"
+
+# config AMS5915_VARIANT_0100_D_B_N	  
+# 	bool "AMS5915-0100-D-B-N"
+
+# config AMS5915_VARIANT_0200_D_N	
+# 	bool "AMS5915-0200-D-N"
+
+# config AMS5915_VARIANT_0350_D_N	
+# 	bool "AMS5915-0350-D-N"
+
+# config AMS5915_VARIANT_1000_D_N	
+# 	bool "AMS5915-1000-D-N"
+
+# config AMS5915_VARIANT_2000_D_N	
+# 	bool "AMS5915-2000-D-N"
+
+# config AMS5915_VARIANT_4000_D_N	
+# 	bool "AMS5915-4000-D-N"
+
+# config AMS5915_VARIANT_7000_D_N	
+# 	bool "AMS5915-7000-D-N"
+
+# config AMS5915_VARIANT_10000_D_N	
+# 	bool "AMS5915-10000-D-N"
+
+# config AMS5915_VARIANT_0200_D_B_N	
+# 	bool "AMS5915-0200-D-B-N"
+
+# config AMS5915_VARIANT_0350_D_B_N	
+# 	bool "AMS5915-0350-D-B-N"
+
+# config AMS5915_VARIANT_1000_D_B_N	 
+# 	bool "AMS5915-1000-D-B-N"
+
+# config AMS5915_VARIANT_4000_D_I_N  
+# 	bool "AMS5915-4000-D-I-N"
+
+# config AMS5915_VARIANT_7000_D_I_N  
+# 	bool "AMS5915-7000-D-I-N"
+
+# config AMS5915_VARIANT_10000_D_I_N	
+# 	bool "AMS5915-10000-D-I-N"
+
+# config AMS5915_VARIANT_12000_D_I_N	
+# 	bool "AMS5915-12000-D-I-N"
+
+# config AMS5915_VARIANT_16000_D_I_N	
+# 	bool "AMS5915-16000-D-I-N"
+	
+# endchoice
+
+# endif # AMS5915

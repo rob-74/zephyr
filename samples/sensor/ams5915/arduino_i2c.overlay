@@ -1,0 +1,17 @@
+/*
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/*
+ * Example configuration of a AMS5915 device on an Arduino I2C bus.
+ *
+ * Device address 0x28 and sensor variant AMS5915-1000-D-N is assumed.
+ */
+&arduino_i2c {
+	status = "okay";
+	ams5915@28 {
+		compatible = "anamicro,ams5915";
+		reg = <0x28>;
+		variant = <13>;  /* AMS5915_1000_D_N */
+	};
+};

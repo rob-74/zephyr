@@ -1,0 +1,12 @@
+sample:
+  name: AMS5915 Sensor sample
+tests:
+  sample.sensor.ams59125:
+    harness: console
+    tags: sensors
+    filter: dt_compat_enabled("anamicro,ams5915")
+    harness_config:
+      type: one_line
+      regex:
+        - "temp: (.*); press: (.*);"
+      fixture: fixture_i2c_ams5915

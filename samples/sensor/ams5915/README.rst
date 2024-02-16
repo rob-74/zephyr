@@ -1,7 +1,7 @@
 .. _ams5915:
 
 AMS5915 Pressure and Temperature Sensor
-###################################
+#######################################
 
 Overview
 ********
@@ -32,7 +32,7 @@ page 7.
    https://https://www.analog-micro.com/products/pressure-sensors/board-mount-pressure-sensors/ams5915/ams5915-datasheet.pdf
 
 AMS5915 via Arduino I2C pins
-===========================
+============================
 
 If you wired the sensor to an I2C peripheral on an Arduino header, build and
 flash with:

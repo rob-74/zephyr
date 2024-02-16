@@ -1,6 +1,6 @@
-.. _bme280:
+.. _ams5915:
 
-BME280 Humidity and Pressure Sensor
+AMS5915 Pressure and Temperature Sensor
 ###################################
 
 Overview
@@ -31,7 +31,7 @@ page 7.
 .. _AMS5915 datasheet:
    https://https://www.analog-micro.com/products/pressure-sensors/board-mount-pressure-sensors/ams5915/ams5915-datasheet.pdf
 
-BME280 via Arduino I2C pins
+AMS5915 via Arduino I2C pins
 ===========================
 
 If you wired the sensor to an I2C peripheral on an Arduino header, build and
@@ -49,7 +49,7 @@ peripheral.
 Board-specific overlays
 =======================
 
-If your board's devicetree does not have a BME280 node already, you can create
+If your board's devicetree does not have a AMS5915 node already, you can create
 a board-specific devicetree overlay adding one in the :file:`boards` directory.
 See existing overlays for examples.
 
@@ -72,38 +72,14 @@ The sample prints output to the serial console. ams5915 device driver messages
 are also logged. Refer to your board's documentation for information on
 connecting to its serial console.
 
-Here is example output for the default application settings, assuming that only
-one AMS5915 sensor is connected to the standard Arduino I2C pins:
+Here is example output for the default application settings:
 
 .. code-block:: none
 
-   [00:00:00.379,760] <dbg> BME280.bme280_init: initializing "BME280_SPI" on bus "SPI_3"
-   [00:00:00.379,821] <dbg> BME280.bme280_init: bad chip id 0xff
-   [00:00:00.379,821] <dbg> BME280.bme280_init: initializing "BME280_I2C" on bus "I2C_0"
-   [00:00:00.380,340] <dbg> BME280.bme280_init: ID OK
-   [00:00:00.385,559] <dbg> BME280.bme280_init: BME280_I2C OK
-   *** Booting Zephyr OS build zephyr-v2.4.0-2940-gbb732ada394f  ***
-   Found device BME280_I2C, getting sensor data
-   temp: 20.260000; press: 99.789019; humidity: 46.458984
-   temp: 20.260000; press: 99.789480; humidity: 46.424804
-   temp: 20.250000; press: 99.789246; humidity: 46.423828
+   *** Booting Zephyr OS build v3.6.0-rc2-31-ge72ac4b0917e ***
+   device is 0x80142b0, name is ams5915@28
+   temp: 21.777343; press: -0.305180;
+   temp: 21.777343; press: -0.305180;
+   temp: 21.777343; press: -0.305180;
+   temp: 21.777343; press: -0.305180;
 
-Here is example output for the default application settings, assuming that two
-different BME280 sensors are connected to the standard Arduino I2C and SPI pins:
-
-.. code-block:: none
-
-   [00:00:00.377,777] <dbg> BME280.bme280_init: initializing "BME280_SPI" on bus "SPI_3"
-   [00:00:00.377,838] <dbg> BME280.bme280_init: ID OK
-   [00:00:00.379,608] <dbg> BME280.bme280_init: BME280_SPI OK
-   [00:00:00.379,638] <dbg> BME280.bme280_init: initializing "BME280_I2C" on bus "I2C_0"
-   [00:00:00.380,126] <dbg> BME280.bme280_init: ID OK
-   [00:00:00.385,345] <dbg> BME280.bme280_init: BME280_I2C OK
-   *** Booting Zephyr OS build zephyr-v2.4.0-2940-gbb732ada394f  ***
-   Found device BME280_I2C, getting sensor data
-   temp: 20.150000; press: 99.857675; humidity: 46.447265
-   temp: 20.150000; press: 99.859121; humidity: 46.458984
-   temp: 20.150000; press: 99.859234; humidity: 46.469726
-
-That the driver logs include a line saying ``BME280_I2C OK`` in both cases, but
-``BME280_SPI OK`` is missing when that device is not connected.

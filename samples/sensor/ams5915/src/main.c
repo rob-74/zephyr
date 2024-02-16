@@ -1,4 +1,6 @@
 /*
+ * Copyright (c) 2024 BoRob Engineering
+ *
  * SPDX-License-Identifier: Apache-2.0
  */
 

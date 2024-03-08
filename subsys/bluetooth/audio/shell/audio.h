@@ -58,27 +58,16 @@ struct named_lc3_preset {
 const struct named_lc3_preset *bap_get_named_preset(bool is_unicast, enum bt_audio_dir dir,
 						    const char *preset_arg);
 
-#if defined(CONFIG_BT_BAP_UNICAST)
-
-#define UNICAST_SERVER_STREAM_COUNT                                                                \
-	COND_CODE_1(CONFIG_BT_ASCS, (CONFIG_BT_ASCS_ASE_SNK_COUNT + CONFIG_BT_ASCS_ASE_SRC_COUNT), \
-		    (0))
-#define UNICAST_CLIENT_STREAM_COUNT                                                                \
-	COND_CODE_1(CONFIG_BT_BAP_UNICAST_CLIENT,                                                  \
-		    (CONFIG_BT_BAP_UNICAST_CLIENT_ASE_SNK_COUNT +                                  \
-		     CONFIG_BT_BAP_UNICAST_CLIENT_ASE_SRC_COUNT),                                  \
-		    (0))
-
-#define BAP_UNICAST_AC_MAX_CONN   2U
-#define BAP_UNICAST_AC_MAX_SNK    (2U * BAP_UNICAST_AC_MAX_CONN)
-#define BAP_UNICAST_AC_MAX_SRC    (2U * BAP_UNICAST_AC_MAX_CONN)
-#define BAP_UNICAST_AC_MAX_PAIR   MAX(BAP_UNICAST_AC_MAX_SNK, BAP_UNICAST_AC_MAX_SRC)
-#define BAP_UNICAST_AC_MAX_STREAM (BAP_UNICAST_AC_MAX_SNK + BAP_UNICAST_AC_MAX_SRC)
-
 struct shell_stream {
 	struct bt_cap_stream stream;
 	struct bt_audio_codec_cfg codec_cfg;
 	struct bt_audio_codec_qos qos;
+#if defined(CONFIG_LIBLC3)
+	uint32_t lc3_freq_hz;
+	uint32_t lc3_frame_duration_us;
+	uint16_t lc3_octets_per_frame;
+	uint8_t lc3_frames_per_sdu;
+#endif /* CONFIG_LIBLC3 */
 #if defined(CONFIG_BT_AUDIO_TX)
 	int64_t connected_at_ticks; /* The uptime tick measured when stream was connected */
 	uint16_t seq_num;
@@ -118,6 +107,23 @@ struct broadcast_sink {
 	bool syncable;
 };
 
+#define BAP_UNICAST_AC_MAX_CONN   2U
+#define BAP_UNICAST_AC_MAX_SNK    (2U * BAP_UNICAST_AC_MAX_CONN)
+#define BAP_UNICAST_AC_MAX_SRC    (2U * BAP_UNICAST_AC_MAX_CONN)
+#define BAP_UNICAST_AC_MAX_PAIR   MAX(BAP_UNICAST_AC_MAX_SNK, BAP_UNICAST_AC_MAX_SRC)
+#define BAP_UNICAST_AC_MAX_STREAM (BAP_UNICAST_AC_MAX_SNK + BAP_UNICAST_AC_MAX_SRC)
+
+#if defined(CONFIG_BT_BAP_UNICAST)
+
+#define UNICAST_SERVER_STREAM_COUNT                                                                \
+	COND_CODE_1(CONFIG_BT_ASCS, (CONFIG_BT_ASCS_ASE_SNK_COUNT + CONFIG_BT_ASCS_ASE_SRC_COUNT), \
+		    (0))
+#define UNICAST_CLIENT_STREAM_COUNT                                                                \
+	COND_CODE_1(CONFIG_BT_BAP_UNICAST_CLIENT,                                                  \
+		    (CONFIG_BT_BAP_UNICAST_CLIENT_ASE_SNK_COUNT +                                  \
+		     CONFIG_BT_BAP_UNICAST_CLIENT_ASE_SRC_COUNT),                                  \
+		    (0))
+
 extern struct shell_stream unicast_streams[CONFIG_BT_MAX_CONN * (UNICAST_SERVER_STREAM_COUNT +
 								 UNICAST_CLIENT_STREAM_COUNT)];
 
@@ -135,8 +141,8 @@ struct bap_unicast_ac_param {
 extern struct bt_bap_unicast_group *default_unicast_group;
 extern struct bt_bap_ep *snks[CONFIG_BT_MAX_CONN][CONFIG_BT_BAP_UNICAST_CLIENT_ASE_SNK_COUNT];
 extern struct bt_bap_ep *srcs[CONFIG_BT_MAX_CONN][CONFIG_BT_BAP_UNICAST_CLIENT_ASE_SRC_COUNT];
-extern const struct named_lc3_preset *default_sink_preset;
-extern const struct named_lc3_preset *default_source_preset;
+extern struct named_lc3_preset default_sink_preset;
+extern struct named_lc3_preset default_source_preset;
 
 int bap_ac_create_unicast_group(const struct bap_unicast_ac_param *param,
 				struct shell_stream *snk_uni_streams[], size_t snk_cnt,

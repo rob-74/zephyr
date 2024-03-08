@@ -164,13 +164,13 @@ process applications.
    :widths: 50,10
 
     confstr(),
-    environ,
+    environ,yes
     errno,yes
-    getenv(),
-    setenv(),
+    getenv(),yes
+    setenv(),yes
     sysconf(),yes
     uname(),yes
-    unsetenv()
+    unsetenv(),yes
 
 .. _posix_option_group_signals:
 
@@ -503,8 +503,8 @@ _XOPEN_STREAMS
    :header: API, Supported
    :widths: 50,10
 
-    fattach(),
-    fdetach(),
+    fattach(),yes (will fail with ``ENOSYS``:ref:`†<posix_undefined_behaviour>`)
+    fdetach(),yes (will fail with ``ENOSYS``:ref:`†<posix_undefined_behaviour>`)
     getmsg(),
     getpmsg(),
     ioctl(),yes
